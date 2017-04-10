@@ -12,15 +12,21 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private AddListView addListView;
-    private List<String> addListDatas = new ArrayList<>();
+    private List<String> addListDatas;
     private int ni = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addListView = (AddListView) findViewById(R.id.commentListView);
+        addListView = (AddListView) findViewById(R.id.AddListView);
+        addListDatas = new ArrayList<>();
 
+        //添加item
+        addListDatas.add("item0");
+        addListView.setDatas(addListDatas);
+
+        //删除按钮的监听
         addListView.setOnItemDelBtnClickListener(new AddListView.OnItemDelBtnClickListener() {
             @Override
             public void onItemDelClick(int position) {
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //添加按钮的监听
         addListView.setOnItemAddBtnClickListener(new AddListView.OnItemAddBtnClickListener() {
             @Override
             public void onItemAddClick() {
@@ -41,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //点击item监听
         addListView.setOnItemClickListener(new AddListView.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -48,7 +56,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        addListDatas.add("item0");
-        addListView.setDatas(addListDatas);
     }
 }
